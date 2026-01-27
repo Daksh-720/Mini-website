@@ -1,0 +1,132 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e0e2e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("F:\Daksh Mini project[WSD]\regi_back.jpg");
+  background-position: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+.form-container {
+  background-color: #eff5f5;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 18px 10px rgb(250, 133, 8);
+ opacity: 0.9;
+}
+
+
+/* Outline around the title text */
+.title-outline{
+  width: 95%;
+  font-family: "Comic Sans Ms", "Comic Sans", cursive;
+  font-size: 23px;
+  background-color: rgb(43, 49, 56);
+  display: inline-block;        /* Allows padding and outline to wrap text tightly */
+  padding: 10px 15px;           /* Padding around the words */
+  outline: 2px solid #4CAF50;   /* Green outline */
+  outline-offset: 4px;          /* Space between outline and text */
+  border-radius: 6px;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+.title-outline:hover{
+  cursor: pointer;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #020202;
+  border-radius: 4px;
+  cursor:pointer
+}
+
+form button {
+  font-family: 'Comic Neue', cursive;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 24px;
+  outline: 2.5px solid black;
+  outline-offset: 2px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+form input:hover{
+  font-family: 'Comic Neue';
+  padding: 10px;
+  width: 100%;
+  background-color: #85808093;
+ 
+}
+
+form button:hover {
+  background-color: #2c552e;
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  .title-outline {
+    font-size: 1.3rem;
+    padding: 8px 12px;
+    width: 100%;
+  }
+
+  form button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, 
+        #24502a,  /* deep blue */
+        #c76408,  /* cosmos blue */
+        #090414   /* black outer edges */
+    );
+    background-size: 300% 300%;
+    z-index: -1;               /* behind all content */
+    opacity: 0;                /* hidden by default */
+    transition: opacity 0.4s ease;
+    animation: glowMove 3s infinite linear;
+}
+
+/* ✨ Show glow on hover anywhere on body */
+body::before {
+    opacity: 2; /* adjust glow intensity */
+}
+
+/* ✨ Glow movement animation */
+@keyframes glowMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
