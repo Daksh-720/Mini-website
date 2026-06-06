@@ -1,57 +1,1062 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ElectroNova Regi.in</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ElectroNova & Buying Guide</title>
+    <style>
+        /* =========================================
+           GLOBAL & NAVIGATION STYLES (ElectroNova)
+           ========================================= */
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <link rel="stylesheet" href="styles.css">
-  
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #05020a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animated Liquid Orbs for Background */
+        .liquid-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            animation: float 12s infinite ease-in-out alternate;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: #04AA6D;
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: #c76408;
+            bottom: 10%;
+            right: -10%;
+            animation-delay: -4s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: #4a00e0;
+            top: 40%;
+            left: 30%;
+            animation-delay: -8s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(50px, 50px) scale(1.2);
+            }
+        }
+
+        /* Glassmorphism Navigation */
+        .topnav {
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 16px 24px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .topnav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #04AA6D;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px #04AA6D;
+        }
+
+        .topnav a:hover::after {
+            width: 100%;
+        }
+
+        .topnav a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* =========================================
+           REGISTRATION SECTION STYLES 
+           ========================================= */
+        .reg-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
+            color: white;
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .form-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 45px 0 rgba(0, 0, 0, 0.8), 0 0 20px rgba(4, 170, 109, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .title-outline {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: #eee;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .form-container input:focus {
+            outline: none;
+            background: rgba(0, 0, 0, 0.4);
+            border-color: #04AA6D;
+            box-shadow: 0 0 15px rgba(4, 170, 109, 0.4) inset;
+        }
+
+        .form-container button,
+        .form-container input[type="reset"] {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #04AA6D, #028a57);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container input[type="reset"] {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-container button:hover {
+            background: linear-gradient(135deg, #05c47e, #04AA6D);
+            box-shadow: 0 4px 20px rgba(4, 170, 109, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Form Validation & Strength Styles */
+        .error-msg {
+            color: #ff7676;
+            font-size: 0.78rem;
+            margin: -14px 0 12px;
+            min-height: 14px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .form-container input.invalid {
+            border-color: #ff5c5c !important;
+            box-shadow: 0 0 12px rgba(255, 92, 92, 0.45) inset !important;
+        }
+
+        .form-container input.valid {
+            border-color: #04AA6D !important;
+        }
+
+        .strength-wrap {
+            margin: -14px 0 14px;
+        }
+
+        .strength-bar {
+            height: 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff5c5c, #ffb84d, #04AA6D);
+            transition: width 0.3s ease;
+        }
+
+        .strength-label {
+            font-size: 0.72rem;
+            color: #bbb;
+            margin-top: 4px;
+        }
+
+        /* =========================================
+           STORE SECTION STYLES 
+           ========================================= */
+        .store-section {
+            position: relative;
+            padding: 60px 40px;
+            overflow: hidden;
+        }
+
+        .store-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h2.section-title {
+            font-size: 32px;
+            color: aliceblue;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: flex-start;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            width: 220px;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.25), transparent 40%);
+            z-index: 2;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card.active-hover {
+            border-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.1) inset;
+            z-index: 10;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            transform: translateZ(40px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: translateZ(60px) scale(1.02);
+        }
+
+        .text {
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            transform: translateZ(30px);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Scroll Effects */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card.reveal {
+            transition-delay: var(--reveal-delay, 0s);
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #04AA6D, #c76408, #4a00e0);
+            z-index: 1000;
+            box-shadow: 0 0 10px rgba(4, 170, 109, 0.8);
+            transition: width 0.1s linear;
+        }
+
+        .to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #04AA6D, #028a57);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(4, 170, 109, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px) scale(0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+        }
+
+        .to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        /* =========================================
+           NAVY LIQUID GLASS - BUYING GUIDE STYLES
+           ========================================= */
+        .guide-wrapper {
+            position: relative;
+            z-index: 2;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .guide-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .guide-header h1 {
+            font-size: 36px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(90deg, #04AA6D, #00d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .guide-nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .guide-nav ul li a {
+            color: #ddd;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .guide-nav ul li a:hover {
+            background: rgba(4, 170, 109, 0.4);
+            border-color: #04AA6D;
+            box-shadow: 0 0 15px rgba(4, 170, 109, 0.4);
+            color: white;
+        }
+
+        /* Base Glass Card */
+        .guide-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            width: 80%;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 40px;
+            border-radius: 24px;
+            color: white;
+            position: relative;
+            transform-style: preserve-3d;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0, 210, 255, 0.05);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease, background 0.5s ease;
+        }
+
+        /* Hover State: Turns to Navy Blue Water */
+        .guide-card.active-hover {
+            background: linear-gradient(135deg, rgba(2, 12, 30, 0.95), rgba(6, 26, 60, 0.98));
+            border-color: rgba(0, 210, 255, 0.6);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(0, 150, 255, 0.3);
+            z-index: 10;
+        }
+
+        /* Mouse Tracking Flashlight Effect */
+        .guide-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 255, 255, 0.2), transparent 40%);
+            z-index: 1;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            mix-blend-mode: screen;
+        }
+
+        .guide-card:hover::before {
+            opacity: 1;
+        }
+
+        /* The Water Ripples/Caustics */
+        .guide-card::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 20% 80%, rgba(0, 210, 255, 0.03) 0%, transparent 25%);
+            background-size: 150px 150px;
+            animation: slowDrift 15s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.5;
+            transition: opacity 0.5s ease, background 0.5s ease;
+        }
+
+        /* Intensified water ripples on hover */
+        .guide-card.active-hover::after {
+            opacity: 1;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 20% 80%, rgba(0, 150, 255, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 20%, rgba(0, 100, 255, 0.1) 0%, transparent 30%);
+            background-size: 120px 120px;
+            animation: waterSwirl 8s linear infinite;
+        }
+
+        /* Keep Text Above the Water */
+        .guide-card h2,
+        .guide-card ul {
+            position: relative;
+            z-index: 2;
+            transform: translateZ(40px);
+        }
+
+        .guide-card h2 {
+            color: #00d2ff;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 0 2px 10px rgba(0, 210, 255, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .guide-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .guide-card ul li {
+            margin: 15px 0;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #eaeaea;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .guide-card ul li::before {
+            content: "💧";
+            position: absolute;
+            left: 0;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        @keyframes slowDrift {
+            0% {
+                transform: rotate(0deg) translate(0px, 0px);
+            }
+
+            100% {
+                transform: rotate(360deg) translate(20px, 20px);
+            }
+        }
+
+        @keyframes waterSwirl {
+            0% {
+                transform: rotate(0deg) translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: rotate(5deg) translate(15px, -15px) scale(1.05);
+            }
+
+            66% {
+                transform: rotate(-5deg) translate(-15px, 15px) scale(0.95);
+            }
+
+            100% {
+                transform: rotate(0deg) translate(0px, 0px) scale(1);
+            }
+        }
+
+        .guide-footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .main-footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(5, 2, 10, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Combined Responsive Styles */
+        @media (max-width: 768px) {
+            .card-container {
+                justify-content: center;
+            }
+
+            .store-section {
+                padding: 40px 20px;
+            }
+
+            .guide-card {
+                width: 90%;
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
-
- 
 
 <body>
 
- <div class="form-container">
-    
-    <h2 class="title-outline">Shop Now at ElectroNova</h2>
+    <div class="liquid-orb orb-1"></div>
+    <div class="liquid-orb orb-2"></div>
+    <div class="liquid-orb orb-3"></div>
 
-    <form action="electroNova.html" method="post">
-      <label for="fullname">Full Name</label>
-      <input type="text" id="fullname" name="fullname" required placeholder="Enter full name">
+    <div class="topnav">
+        <a href="#register">Register</a>
+        <a href="#phones">Phones</a>
+        <a href="#laptops">Laptops</a>
+        <a href="#guide">Buying Guide</a>
+    </div>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required placeholder="abc@gmail.com">
+    <div id="register" class="reg-section">
+        <div class="form-container">
+            <h2 class="title-outline">Join ElectroNova</h2>
+            <form action="#phones" method="post" id="regForm" novalidate>
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter full name (letters only)">
+                <div class="error-msg" id="err-fullname"></div>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required minlength="5 characters">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="abc@gmail.com">
+                <div class="error-msg" id="err-email"></div>
 
-      <label for="numb.">Mobile phone</label>
-      <input type="number" id="numb." name="numb." required pattern="[0-9]{4} [0-9]{2} [0-9]{4}" placeholder="1234-56-7890">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Min 8 chars, A-Z, a-z, 0-9, symbol">
+                <div class="strength-wrap">
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>
+                    <div class="strength-label" id="strengthLabel">Strength: —</div>
+                </div>
+                <div class="error-msg" id="err-password"></div>
 
-      <label for="fileupload">Please select your image:</label>
-      <input type="file" NAME="fileupload" accept="image/*"/>
+                <label for="numb">Mobile Phone</label>
+                <input type="text" id="numb" name="numb" placeholder="1234-56-7890">
+                <div class="error-msg" id="err-numb"></div>
 
+                <label for="fileupload">Profile Image (Optional):</label>
+                <input type="file" id="fileupload" name="fileupload" accept="image/*"
+                    style="border:none; padding:0; background:transparent; box-shadow:none;">
 
+                <button type="submit">Create Account</button>
+                <input type="reset" value="Clear Details">
+            </form>
+        </div>
+    </div>
 
-      <button onclick="myFunction()">Register</button><br><br>
-      <input type="reset" value="Reset">
-      <script>
-      function myFunction() {
-      alert("Registered Successfully ");
+    <div id="phones" class="store-section">
+        <div class="store-content">
+            <h2 class="section-title">📱 Smartphones Under ₹30,000</h2>
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://placehold.co/220x200/290d57/FFF?text=Nothing+Phone+2a" alt="Nothing Phone 2a">
+                    <div class="text">Nothing Phone 2a</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/290d57/FFF?text=OnePlus+Nord+5" alt="OnePlus Nord 5">
+                    <div class="text">OnePlus Nord 5 5G</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/290d57/FFF?text=Moto+Edge+60" alt="Motorola Edge 60 Pro">
+                    <div class="text">Motorola Edge 60 Pro</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/290d57/FFF?text=iQOO+Neo+10R" alt="iQOO Neo 10R">
+                    <div class="text">iQOO Neo 10R</div>
+                </div>
+            </div>
 
-      if(document.getElementById("fullname")==""){
-         document.write("please fill this detail")
+            <h2 class="section-title">📱 Premium Smartphones</h2>
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://placehold.co/220x200/290d57/FFF?text=Galaxy+S24" alt="Samsung Galaxy S24">
+                    <div class="text">Samsung Galaxy S24</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/290d57/FFF?text=Pixel+9a" alt="Google Pixel 9a">
+                    <div class="text">Google Pixel 9a</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/290d57/FFF?text=iQOO+12" alt="iQOO 12">
+                    <div class="text">iQOO 12</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/290d57/FFF?text=OnePlus+13s" alt="OnePlus 13s">
+                    <div class="text">OnePlus 13s</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="laptops" class="store-section">
+        <div class="store-content">
+            <h2 class="section-title">💻 Laptops Under ₹70,000</h2>
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://placehold.co/220x200/0047FF/FFF?text=HP+Victus+15" alt="HP Victus 15">
+                    <div class="text">HP Victus 15 Gaming</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/0047FF/FFF?text=ASUS+Vivobook+16" alt="ASUS Vivobook 16">
+                    <div class="text">ASUS Vivobook 16</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/0047FF/FFF?text=Acer+Aspire+Go" alt="Acer Aspire Go 14">
+                    <div class="text">Acer Aspire Go 14</div>
+                </div>
+            </div>
+
+            <h2 class="section-title">💻 Performance & Creator Laptops</h2>
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://placehold.co/220x200/0047FF/FFF?text=Vivobook+S+15" alt="ASUS Vivobook S 15">
+                    <div class="text">ASUS Vivobook S 15 (Intel Core Ultra 7)</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/0047FF/FFF?text=MacBook+Air+M3" alt="Apple MacBook Air">
+                    <div class="text">Apple MacBook Air M3</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/0047FF/FFF?text=ASUS+TUF+A15" alt="ASUS TUF A15">
+                    <div class="text">ASUS TUF A15 (Ryzen 7)</div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/220x200/0047FF/FFF?text=Inspiron+16+Plus" alt="Dell Inspiron 16">
+                    <div class="text">Dell Inspiron 16 Plus</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="guide" class="guide-wrapper">
+        <header class="guide-header">
+            <h1>Buying Guide for Mobiles & Laptops</h1>
+            <nav class="guide-nav">
+                <ul>
+                    <li><a href="#mobile-guide">Mobile Guide</a></li>
+                    <li><a href="#laptop-guide">Laptop Guide</a></li>
+                    <li><a href="#tips-guide">General Tips</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="mobile-guide" class="guide-card reveal">
+            <h2>Mobile Buying Guide</h2>
+            <ul>
+                <li><strong>Processor:</strong> Prefer Snapdragon or MediaTek Dimensity for best performance.</li>
+                <li><strong>RAM:</strong> Minimum 6GB for smooth usage.</li>
+                <li><strong>Battery:</strong> 4500mAh or more recommended.</li>
+                <li><strong>Camera:</strong> Sensor quality matters more than megapixels.</li>
+                <li><strong>Display:</strong> AMOLED preferred; 90Hz/120Hz for smoother experience.</li>
+            </ul>
+        </section>
+
+        <section id="laptop-guide" class="guide-card reveal">
+            <h2>Laptop Buying Guide</h2>
+            <ul>
+                <li><strong>Processor:</strong> Intel i5/Ryzen 5 or better.</li>
+                <li><strong>RAM:</strong> At least 8GB; 16GB for programming or editing.</li>
+                <li><strong>Storage:</strong> SSD (256GB+) is a must.</li>
+                <li><strong>Graphics:</strong> Integrated for normal use; dedicated for gaming/editing.</li>
+                <li><strong>Display:</strong> Full HD (1080p) with anti-glare preferred.</li>
+            </ul>
+        </section>
+
+        <section id="tips-guide" class="guide-card reveal">
+            <h2>General Buying Tips</h2>
+            <ul>
+                <li>Always compare prices on multiple online stores.</li>
+                <li>Check reviews and user ratings before buying.</li>
+                <li>Look for warranty and return policy.</li>
+                <li>Buy only from trusted and verified sellers.</li>
+            </ul>
+        </section>
+
+        <footer class="guide-footer">
+            <p>© 2025 Buying Guide Website | Designed by You</p>
+        </footer>
+    </div>
+
+    <footer class="main-footer">
+        <p>© 2025 ElectroNova | Engineered with Liquid Glassmorphism</p>
+    </footer>
+
+    <script>
+        /* =========================================
+           COOKIE FUNCTIONS (ADDED)
+        ========================================= */
+        function setCookie(name, value, days = 7) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${encodeURIComponent(value)};expires=${d.toUTCString()};path=/`;
         }
 
-      }
-      </script>
+        function getCookie(name) {
+            const cname = name + "=";
+            const decoded = decodeURIComponent(document.cookie);
+            const arr = decoded.split(';');
+            for (let c of arr) {
+                c = c.trim();
+                if (c.indexOf(cname) === 0) {
+                    return c.substring(cname.length, c.length);
+                }
+            }
+            return "";
+        }
 
-    </form>
-  </div>
- 
+        function deleteCookie(name) {
+            document.cookie = name + "=; Max-Age=0; path=/;";
+        }
 
+        /* =========================================
+           AUTO-FILL FROM COOKIES (ADDED)
+        ========================================= */
+        window.addEventListener("load", () => {
+            const savedName = getCookie("fullname");
+            const savedEmail = getCookie("email");
+            const savedMobile = getCookie("mobile");
+
+            if (savedName) document.getElementById("fullname").value = savedName;
+            if (savedEmail) document.getElementById("email").value = savedEmail;
+            if (savedMobile) document.getElementById("numb").value = savedMobile;
+        });
+
+        /* =========================================
+           EXISTING VALIDATION (UNCHANGED)
+        ========================================= */
+        const regex = {
+            fullname: /^[A-Za-z]+(?:[ '-][A-Za-z]+){1,4}$/,
+            email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+            password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/,
+            mobile: /^[0-9]{4}-[0-9]{2}-[0-9]{4}$/
+        };
+
+        const messages = {
+            fullname: "Use 2–5 words, letters only (e.g. John Doe).",
+            email: "Enter a valid email like name@example.com.",
+            password: "Min 8 chars with uppercase, lowercase, number & symbol.",
+            mobile: "Format must be 1234-56-7890."
+        };
+
+        function setState(input, errEl, ok, msg) {
+            input.classList.remove('valid', 'invalid');
+            if (input.value === '') { errEl.textContent = ''; return; }
+            input.classList.add(ok ? 'valid' : 'invalid');
+            errEl.textContent = ok ? '' : msg;
+        }
+
+        function validateField(id, key) {
+            const input = document.getElementById(id);
+            const err = document.getElementById('err-' + id);
+            const ok = regex[key].test(input.value.trim());
+            setState(input, err, ok, messages[key]);
+            return ok;
+        }
+
+        const fields = [['fullname', 'fullname'], ['email', 'email'], ['password', 'password'], ['numb', 'mobile']];
+        fields.forEach(([id, key]) => {
+            document.getElementById(id).addEventListener('input', () => validateField(id, key));
+        });
+
+        /* =========================================
+           PASSWORD STRENGTH (UNCHANGED)
+        ========================================= */
+        const pwd = document.getElementById('password');
+        const fill = document.getElementById('strengthFill');
+        const label = document.getElementById('strengthLabel');
+
+        pwd.addEventListener('input', () => {
+            const v = pwd.value;
+            let score = 0;
+            if (v.length >= 8) score++;
+            if (/[A-Z]/.test(v)) score++;
+            if (/[a-z]/.test(v)) score++;
+            if (/\d/.test(v)) score++;
+            if (/[^A-Za-z0-9]/.test(v)) score++;
+            const labels = ['—', 'Very weak', 'Weak', 'Fair', 'Strong', 'Excellent'];
+            fill.style.width = (score * 20) + '%';
+            label.textContent = 'Strength: ' + labels[score];
+        });
+
+        /* =========================================
+           FORM SUBMIT (UPDATED WITH COOKIES)
+        ========================================= */
+        document.getElementById("regForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const results = fields.map(([id, key]) => validateField(id, key));
+
+            fields.forEach(([id, key]) => {
+                const input = document.getElementById(id);
+                const err = document.getElementById('err-' + id);
+                if (input.value.trim() === '') {
+                    input.classList.add('invalid');
+                    err.textContent = messages[key];
+                }
+            });
+
+            if (results.every(Boolean)) {
+                const name = document.getElementById('fullname').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const mobile = document.getElementById('numb').value.trim();
+
+                // ✅ SAVE COOKIES (ADDED)
+                setCookie("fullname", name);
+                setCookie("email", email);
+                setCookie("mobile", mobile);
+
+                alert(`Welcome to ElectroNova, ${name}! Your account is ready.`);
+
+                this.reset();
+                fill.style.width = '0%';
+                label.textContent = 'Strength: —';
+
+                document.querySelectorAll('.form-container input').forEach(i => i.classList.remove('valid', 'invalid'));
+                document.querySelectorAll('.error-msg').forEach(e => e.textContent = '');
+
+                window.location.hash = "#phones";
+            }
+        });
+
+        /* =========================================
+           RESET → CLEAR COOKIES (ADDED)
+        ========================================= */
+        document.querySelector('input[type="reset"]').addEventListener('click', () => {
+            deleteCookie("fullname");
+            deleteCookie("email");
+            deleteCookie("mobile");
+        });
+
+        /* =========================================
+           REST OF YOUR ORIGINAL CODE (UNCHANGED)
+        ========================================= */
+        document.querySelectorAll('h2.section-title, .form-container, .guide-card').forEach(el => el.classList.add('reveal'));
+        document.querySelectorAll('.card-container').forEach(container => {
+            container.querySelectorAll('.card').forEach((card, i) => {
+                card.style.setProperty('--reveal-delay', (i * 0.08) + 's');
+            });
+        });
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        const progress = document.createElement('div');
+        progress.className = 'scroll-progress';
+        document.body.appendChild(progress);
+
+        const toTop = document.createElement('button');
+        toTop.className = 'to-top';
+        toTop.innerHTML = '↑';
+        toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        document.body.appendChild(toTop);
+
+        const orbs = document.querySelectorAll('.liquid-orb');
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            const scrolled = h.scrollTop;
+            const total = h.scrollHeight - h.clientHeight;
+            const pct = total > 0 ? (scrolled / total) * 100 : 0;
+
+            progress.style.width = pct + '%';
+            toTop.classList.toggle('show', scrolled > 400);
+
+            orbs.forEach((orb, i) => {
+                const speed = (i + 1) * 0.15;
+                orb.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        }, { passive: true });
+
+        const cards = document.querySelectorAll('.card, .guide-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                card.classList.add('active-hover');
+
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const intensity = card.classList.contains('guide-card') ? 10 : 20;
+                const rotateX = ((y - centerY) / centerY) * -intensity;
+                const rotateY = ((x - centerX) / centerX) * intensity;
+
+                const scale = card.classList.contains('guide-card') ? 1.02 : 1.08;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scale}, ${scale}, ${scale})`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('active-hover');
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+    </script>
 </body>
 
 </html>
